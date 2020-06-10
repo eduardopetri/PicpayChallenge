@@ -1,7 +1,7 @@
 import React, {useEffect, useState, ChangeEvent} from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput,Image, FlatList, } from 'react-native';
 import axios from 'axios';
-//import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import {RectButton} from 'react-native-gesture-handler';
 
@@ -13,13 +13,18 @@ interface PicpayResponse {
 }
  
 const Home = () => {
+  const navigation = useNavigation();
   const [allContacts, setAllcontacts] = useState<PicpayResponse[]>([]);
   const [contacts, setContacts] = useState<PicpayResponse[]>([]);
   const [contactName, setContactname] = useState('');
+  const [selectedContact, setSelectedContact] = useState<PicpayResponse[]>([]);
+
   
-  function handleSearchContact(name: string){
-    console.log('nome',name)
+  function handleNavigationToRegisterCreditCard(){
+    navigation.navigate('RegisterCreditCard');
   }
+
+
   useEffect(() => {
     if (contactName !== ''){
       const filteredContact = contacts.filter(contact => contact.name.includes(contactName));
@@ -70,7 +75,7 @@ const Home = () => {
         {contacts.sort().map(contact => (
             <View key={String(contact.id)} style={styles.contactsContainer}>
                 <Image source={{uri: contact.img}} style={styles.contactImage} />
-              <RectButton onPress={() => {console.log(contact.id,contact.name, contact.username)}}>
+              <RectButton style={styles.contactButton} onPress={() => {handleNavigationToRegisterCreditCard()}} >
                 <Text style={styles.userNameText}>{contact.username}</Text>
                 <Text style={styles.nameText}>{contact.name}</Text>
               </RectButton>
@@ -160,7 +165,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 16,
     color: 'rgba(255, 255, 255, 0.5)',
-  }
+  },
+  contactButton: {
+    width: '100%',
+  },
 });
 
 export default Home;

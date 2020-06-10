@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppLoading } from 'expo';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Roboto_400Regular, Roboto_500Medium, Roboto_700Bold, useFonts} from '@expo-google-fonts/roboto';
-import Home from './src/Home';
+import Routes from './src/routes';
 export default function App() {
   const [fontsLoaded] = useFonts ({
     Roboto_400Regular,
@@ -13,10 +13,10 @@ export default function App() {
     return <AppLoading /> 
   }
   return (
-    
-    <View style={styles.container}>
-      <Home />
-    </View>
+    <>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <Routes />
+    </>
   );
 }
 
