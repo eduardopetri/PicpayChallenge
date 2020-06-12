@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './pages/Home';
 import RegisterCreditCard from './pages/RegisterCreditCard';
-
+import RegisterNewCreditCard from './pages/RegisterNewCreditCard';
 const AppStack = createStackNavigator();
 
 const Routes = () => {
@@ -19,6 +19,8 @@ const Routes = () => {
       }} >
         <AppStack.Screen name="Home" component={Home} />
         <AppStack.Screen name="RegisterCreditCard" component={RegisterCreditCard} />
+        <AppStack.Screen name="RegisterNewCreditCard" component={RegisterNewCreditCard} />
+
       </AppStack.Navigator>
     </NavigationContainer>
   );

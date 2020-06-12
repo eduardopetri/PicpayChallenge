@@ -57,10 +57,11 @@ const Home = () => {
 
   return(
     <>
-      <View >
+      <ScrollView style={styles.container} onScrollToTop={() => {}} >       
+      <View style={styles.titleContainer} >
         <Text style={styles.title}>Contatos</Text>
       </View>
-      <ScrollView style={styles.container} onScrollToTop={() => {}} >       
+      
       <View style={styles.main} >
         <View style={styles.searchSection}>
           <Icon style={styles.searchIcon} name="search" size={16 } color="#ACB1BD"/>
@@ -71,17 +72,19 @@ const Home = () => {
             autoCorrect={false}            
           />  
         </View>
-       
-        {contacts.sort().map(contact => (
-            <View key={String(contact.id)} style={styles.contactsContainer}>
-                <Image source={{uri: contact.img}} style={styles.contactImage} />
-              <RectButton style={styles.contactButton} onPress={() => {handleNavigationToRegisterCreditCard()}} >
-                <Text style={styles.userNameText}>{contact.username}</Text>
-                <Text style={styles.nameText}>{contact.name}</Text>
-              </RectButton>
-            </View>
-          
-        ))}
+        <ScrollView>
+          {contacts.sort().map(contact => (
+              <View key={String(contact.id)} style={styles.contactsContainer}>
+                <RectButton style={styles.contactButton} onPress={() => {handleNavigationToRegisterCreditCard()}} >
+                  <Image source={{uri: contact.img}} style={styles.contactImage} />
+                  <View style={{flexDirection: 'column'}}>
+                    <Text style={styles.userNameText}>{contact.username}</Text>
+                    <Text style={styles.nameText}>{contact.name}</Text>
+                  </View>
+                </RectButton>
+              </View>
+          ))}
+        </ScrollView> 
       </View>        
       </ScrollView>
     </>
@@ -92,6 +95,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     
+  },
+  titleContainer: {
+    overflow: 'hidden',
   },
   title: {
     paddingTop: 60,
@@ -167,6 +173,7 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 0.5)',
   },
   contactButton: {
+    flexDirection: "row",
     width: '100%',
   },
 });

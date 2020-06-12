@@ -4,19 +4,17 @@ import axios from 'axios';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import {RectButton} from 'react-native-gesture-handler';
-
+import BackPageButton from '../../components/BackPageButton';
 const RegisterCreditCard = () => {
   const navigation = useNavigation();
-  function handleNavigateBack() {
-    navigation.goBack();
+
+  function handleNavigationToRegisterNewCreditCard(){
+    navigation.navigate('RegisterNewCreditCard');
   }
+
   return(
     <>
-      <View>
-        <TouchableOpacity>
-          <Icon name="angle-left" style={styles.iconBack} size={30} onPress={handleNavigateBack}/>
-        </TouchableOpacity>
-      </View>
+      <BackPageButton />
       <View style={styles.container}>
         <Image source={require('../../assets/creditcard.png')} width={100} height={70}/>
         <Text style={styles.titleText}>Cadastre um cartão de crédito</Text>
@@ -27,7 +25,7 @@ const RegisterCreditCard = () => {
         
       </View>
       <View style={styles.buttonContainer}>
-        <RectButton style={styles.button}>
+        <RectButton style={styles.button} onPress={() => {handleNavigationToRegisterNewCreditCard()}}>
           <Text style={styles.textButton}>Cadastrar Cartão</Text>
         </RectButton>
       </View>
@@ -39,11 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginTop: 158,
-  },
-  iconBack:{
-    color: '#11C76F',
-    paddingTop: 18,
-    paddingLeft: 12,
   },
   titleText: {
     fontFamily: 'Roboto_700Bold',
