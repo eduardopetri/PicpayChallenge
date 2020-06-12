@@ -17,14 +17,10 @@ const Home = () => {
   const [allContacts, setAllcontacts] = useState<PicpayResponse[]>([]);
   const [contacts, setContacts] = useState<PicpayResponse[]>([]);
   const [contactName, setContactname] = useState('');
-  const [selectedContact, setSelectedContact] = useState<PicpayResponse[]>([]);
+  function handleNavigationToRegisterCreditCard(contact: object){
+    navigation.navigate('RegisterCreditCard',contact );
 
-  
-  function handleNavigationToRegisterCreditCard(){
-    navigation.navigate('RegisterCreditCard');
   }
-
-
   useEffect(() => {
     if (contactName !== ''){
       const filteredContact = contacts.filter(contact => contact.name.includes(contactName));
@@ -33,7 +29,6 @@ const Home = () => {
     else{
       setContacts(allContacts);
     }
-    console.log(contacts);
   },[contactName]);
 
   useEffect(() => {
@@ -50,7 +45,6 @@ const Home = () => {
       })
       setAllcontacts(contacts);
       setContacts(contacts);
-      console.log(contacts);
     });
   }, []);  
 
@@ -75,7 +69,11 @@ const Home = () => {
         <ScrollView>
           {contacts.sort().map(contact => (
               <View key={String(contact.id)} style={styles.contactsContainer}>
-                <RectButton style={styles.contactButton} onPress={() => {handleNavigationToRegisterCreditCard()}} >
+                <RectButton style={styles.contactButton} 
+                  onPress={() => {
+                    handleNavigationToRegisterCreditCard(contact);
+                  }}
+                >
                   <Image source={{uri: contact.img}} style={styles.contactImage} />
                   <View style={{flexDirection: 'column'}}>
                     <Text style={styles.userNameText}>{contact.username}</Text>

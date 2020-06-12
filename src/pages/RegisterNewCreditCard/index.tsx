@@ -5,15 +5,21 @@ import { FontAwesome as Icon } from '@expo/vector-icons';
 import {RectButton} from 'react-native-gesture-handler';
 import BackPageButton from '../../components/BackPageButton';
 
+interface Params {
+  id: number;
+  name: string;
+  img: string;
+  username: string;
+}
 const RegisterNewCreditCard = () => {
-  function TextInputColorOnFocus(){
-    const underlineColorAndroid='#11C76F'
-    console.log(underlineColorAndroid)
+  const navigation = useNavigation();
+  const route = useRoute();
+  const routeParams = route.params as Params;
+  function handleNavigationToPayment(){
+    navigation.navigate('Payment', routeParams);
   }
-  function TextInputColorOnBlur(){
-    const underlineColorAndroid='rgba(255, 255, 255, 0.4)'
-    console.log(underlineColorAndroid)
-  }
+
+
   return(
     <>
       <BackPageButton />
@@ -29,9 +35,7 @@ const RegisterNewCreditCard = () => {
             maxLength={16} 
             keyboardType='number-pad' 
             style={styles.longInput}  
-            onBlur={() => {TextInputColorOnBlur()}}
-            onFocus={() => {TextInputColorOnFocus()}}
-            
+            underlineColorAndroid={'rgba(255, 255, 255, 0.4)'}  
           /> 
           <TextInput 
             placeholder="Nome do titular" 
@@ -61,7 +65,7 @@ const RegisterNewCreditCard = () => {
         
         </View>
         <View style={styles.buttonContainer}>
-          <RectButton style={styles.button} onPress={() => {}}>
+          <RectButton style={styles.button} onPress={() => {handleNavigationToPayment()}}>
             <Text style={styles.textButton}>Salvar</Text>
           </RectButton>
         </View>

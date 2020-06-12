@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import RegisterCreditCard from './pages/RegisterCreditCard';
 import RegisterNewCreditCard from './pages/RegisterNewCreditCard';
+import Payment from './pages/Payment';
 const AppStack = createStackNavigator();
 
 const Routes = () => {
@@ -20,6 +21,7 @@ const Routes = () => {
         <AppStack.Screen name="Home" component={Home} />
         <AppStack.Screen name="RegisterCreditCard" component={RegisterCreditCard} />
         <AppStack.Screen name="RegisterNewCreditCard" component={RegisterNewCreditCard} />
+        <AppStack.Screen name="Payment" component={Payment} />
 
       </AppStack.Navigator>
     </NavigationContainer>

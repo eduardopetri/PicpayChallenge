@@ -5,11 +5,25 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import {RectButton} from 'react-native-gesture-handler';
 import BackPageButton from '../../components/BackPageButton';
+
+
+interface Params {
+  id: number;
+  name: string;
+  img: string;
+  username: string;
+}
+
 const RegisterCreditCard = () => {
   const navigation = useNavigation();
-
+  const route = useRoute();
+  const routeParams = route.params as Params;
+  
+  
+  
+  
   function handleNavigationToRegisterNewCreditCard(){
-    navigation.navigate('RegisterNewCreditCard');
+    navigation.navigate('RegisterNewCreditCard', routeParams);
   }
 
   return(
